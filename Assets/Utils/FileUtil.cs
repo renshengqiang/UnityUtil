@@ -3,6 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
+using UnityEngine;
+
+
 public class FileUtil
 {
     /* 文件协议 */
