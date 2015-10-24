@@ -1,12 +1,26 @@
 using System;
 using UnityEngine;
-using System.Diagnostics;
 
 public static class Extension
 {
-	public static void Log (this MonoBehaviour mono, object obj)
+	public static void SetPositionX (this Transform trans, float x)
 	{
-		string stackInfo = new StackTrace().ToString();
-		UnityEngine.Debug.Log (obj + stackInfo);
+		Vector3 toTrans = trans.localPosition;
+		toTrans.x = x;
+		trans.localPosition = toTrans;
+	}
+
+	public static void SetPositionY (this Transform trans, float y)
+	{
+		Vector3 toTrans = trans.localPosition;
+		toTrans.y = y;
+		trans.localPosition = toTrans;
+	}
+
+	public static void SetPositionZ (this Transform trans, float z)
+	{
+		Vector3 toTrans = trans.localPosition;
+		toTrans.z = z;
+		trans.localPosition = toTrans;
 	}
 }
