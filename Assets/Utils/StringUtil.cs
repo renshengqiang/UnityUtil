@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
 using UnityEngine;
-public class String
+public class StringUtil
 {
     public static byte[] GetStrBytes(string str)
     {
