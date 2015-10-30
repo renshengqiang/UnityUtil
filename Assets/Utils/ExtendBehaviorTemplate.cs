@@ -1,12 +1,16 @@
+/// <summary>
+/// ExtendBehaviorTemplate
+/// author: tnqiang
+/// </summary>
 using UnityEngine;
 using System.Collections;
 using Util;
 
-public class {0} : ExtendBehavior {
+public class ExtendBehaviorTemplate : ExtendBehavior {
 
 	// Use this for initialization
 	void Start () {
-	s
+	
 	}
 	
 	// Update is called once per frame
