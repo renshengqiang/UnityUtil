@@ -3,4 +3,3 @@ Library/*
 *.sln
 *.suo
 obj/*
-ProjectSettings/*
