@@ -33,6 +33,57 @@ public class FileUtil
         return File.Exists(name);
     }
 
+	/// <summary>
+	/// Saves to file.
+	/// If the file Exist before, just truncate it.
+	/// </summary>
+	/// <param name="content">Content.</param>
+	/// <param name="path">Path.</param>
+	public static void SaveToFile(string content, string path)
+	{
+		using (FileStream fileStream = new FileStream(path, File.Exists(path) ? FileMode.Truncate : FileMode.OpenOrCreate))
+		{
+			byte[] bytes = System.Text.Encoding.Default.GetBytes(content);
+			fileStream.Write(bytes, 0, bytes.Length);
+			fileStream.Close();
+			fileStream.Dispose();
+		}
+	}
+
+	/// <summary>
+	/// Reads the content from a file in string
+	/// </summary>
+	/// <returns>The all.</returns>
+	/// <param name="file">file.</param>
+	public static string ReadAll(string file)
+	{
+		if (false == File.Exists (file)) 
+		{
+			return string.Empty;
+		} 
+		else 
+		{
+			return File.ReadAllText(file);
+		}
+	}
+
+	/// <summary>
+	/// Reads all lines of file in string
+	/// </summary>
+	/// <returns>The all lines.</returns>
+	/// <param name="file">file.</param>
+	public static string[] ReadAllLines(string file)
+	{
+		if (false == File.Exists (file)) 
+		{
+			return null;
+		} 
+		else 
+		{
+			return File.ReadAllLines(file);
+		}
+	}
+
     /// <summary>
     /// 保存文件.
     /// </summary>

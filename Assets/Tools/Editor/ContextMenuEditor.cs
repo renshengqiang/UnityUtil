@@ -20,6 +20,16 @@ public class ContextMenuEditor : Editor {
 		}
 		NewExtendBehaviorWindow.InitPath (path);
 	}
+
+//	/// <summary>
+//	/// 选中当前哪些对象依赖于当前所选中的对象
+//	/// </summary>
+//	[MenuItem("Assets/Select Dependencies By")]
+//	private static void SelectDependenciesBy()
+//	{
+//		UnityEngine.Object[] selection = Selection.objects;
+//		Selection.objects = EditorUtility.CollectDependencies(selection);
+//	}
 }
 
 public class NewExtendBehaviorWindow : EditorWindow
