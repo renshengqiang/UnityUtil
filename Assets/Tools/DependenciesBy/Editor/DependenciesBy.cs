@@ -2,6 +2,8 @@
 using UnityEditor;
 using System.Collections;
 using System.Collections.Generic;
+using System;
+using System.Reflection;
 
 [InitializeOnLoad]
 public class DependenciesBy : Editor
@@ -21,7 +23,7 @@ public class DependenciesBy : Editor
 	{
 		string[] selections = Selection.assetGUIDs;
 		List<string> dependenciesBy = new List<string> ();
-		List<Object> dependenciesByPaths = new List<Object> ();
+		List<UnityEngine.Object> dependenciesByPaths = new List<UnityEngine.Object> ();
 		for (int i=0; selections != null && i<selections.Length; ++i) 
 		{
 			List<string> lst = repo.GetDepencenciesBy(selections[i]);
@@ -31,10 +33,37 @@ public class DependenciesBy : Editor
 		for (int i=0; i<dependenciesBy.Count; ++i) 
 		{
 			Debug.Log(dependenciesBy[i]);
-			dependenciesByPaths.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(dependenciesBy[i]), typeof(Object)));
+			dependenciesByPaths.Add(AssetDatabase.LoadAssetAtPath(AssetDatabase.GUIDToAssetPath(dependenciesBy[i]), typeof(UnityEngine.Object)));
 		}
 		Selection.objects = dependenciesByPaths.ToArray ();
+        ShowSelectionInProjectHierarchy();
 	}
+
+    static void ShowSelectionInProjectHierarchy()
+    {
+        var pbType = GetType("UnityEditor.ProjectBrowser");
+        var meth = pbType.GetMethod("ShowSelectedObjectsInLastInteractedProjectBrowser",
+            BindingFlags.Public |
+            BindingFlags.NonPublic |
+            BindingFlags.Static);
+        meth.Invoke(null, null);
+    }
+
+    // helper method to find a tyep of a given name
+    static Type GetType(string name)
+    {
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
+        foreach (var asm in assemblies)
+        {
+            var type = asm.GetType(name);
+            if (type != null)
+            {
+                return type;
+            }
+        }
+
+        return null;
+    }
 }
 
 /// <summary>
