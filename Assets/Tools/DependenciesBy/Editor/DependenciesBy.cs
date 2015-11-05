@@ -63,6 +63,17 @@ public class DependenciesBy : AssetPostprocessor
         ShowSelectionInProjectHierarchy();
 	}
 
+    /// <summary>
+    /// Parse the the resource dependency manual
+    /// </summary>
+    [MenuItem("Assets/Reparse Resource Dependency")]
+    private static void RerarseResourceDependency()
+    {
+        repo = new ObjectRepo();
+        repo.ReParseDependency();
+        initialized = true;
+    }
+
     private static void ShowSelectionInProjectHierarchy()
     {
 		Type pbType = GetType("UnityEditor.ProjectBrowser");
@@ -103,8 +114,7 @@ public class ObjectRepo
 		}
 		else 
 		{
-			ParseFromRepo();
-			Serialize();
+            ReParseDependency();
 		}
 	}
 
@@ -112,6 +122,12 @@ public class ObjectRepo
 	{
 		Serialize ();
 	}
+
+    public void ReParseDependency()
+    {
+        ParseFromRepo();
+        Serialize();
+    }
 
 	public List<string> GetDepencenciesBy(string guid)
 	{
