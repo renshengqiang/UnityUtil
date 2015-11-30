@@ -1,9 +1,7 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
-using UnityEngine;
 
 
 public class FileUtil
@@ -63,7 +61,8 @@ public class FileUtil
 		} 
 		else 
 		{
-			return File.ReadAllText(file);
+            return string.Empty;
+            //return File.ReadAllText(file);
 		}
 	}
 
@@ -159,8 +158,8 @@ public class FileUtil
     /// <param name="filepath">Filepath.</param>
     public static long GetFileSize(string filepath)
     {
-        FileInfo bundleinfo = new FileInfo(filepath);
-        long bundlesize = bundleinfo.Length;
+        FileInfo fileInfo = new FileInfo(filepath);
+        long bundlesize = 0;// fileInfo.Length;
         return bundlesize;
     }
 
@@ -236,7 +235,7 @@ public class FileUtil
                 return;
             }
         }
-        File.Move(source, destination);
+        //File.Move(source, destination);
     }
 
     /// <summary>
@@ -273,7 +272,7 @@ public class FileUtil
 
         /* 遍历所有文件 枚举所有依赖 */
         DirectoryInfo directory = new DirectoryInfo(dirpath);
-        FileInfo[] dirs = directory.GetFiles(cont, SearchOption.AllDirectories);
+        FileInfo[] dirs = null;// directory.GetFiles(cont, SearchOption.AllDirectories);
 
         /* 遍历所有Prefab */
         foreach (FileInfo info in dirs)
@@ -311,7 +310,7 @@ public class FileUtil
         {
             if (Directory.Exists(dir))
             {
-                Directory.Delete(dir, true);
+                //Directory.Delete(dir, true);
             }
             Directory.CreateDirectory(dir);
         }
@@ -333,7 +332,7 @@ public class FileUtil
     {
         // Get the subdirectories for the specified directory.
         DirectoryInfo dir = new DirectoryInfo(sourceDirName);
-        DirectoryInfo[] dirs = dir.GetDirectories();
+        DirectoryInfo[] dirs = null;// dir.GetDirectories();
 
         if (!dir.Exists)
         {
@@ -349,13 +348,13 @@ public class FileUtil
         }
 
         // Get the files in the directory and copy them to the new location.
-        FileInfo[] files = dir.GetFiles();
+        FileInfo[] files = null;// dir.GetFiles();
         foreach (FileInfo file in files)
         {
             string temppath = Path.Combine(destDirName, file.Name);
             if (File.Exists(temppath))
                 File.Delete(temppath);
-            file.MoveTo(temppath);
+            //file.MoveTo(temppath);
         }
 
         // If copying subdirectories, copy them and their contents to new location. 
