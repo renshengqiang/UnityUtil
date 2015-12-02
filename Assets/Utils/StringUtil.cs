@@ -85,11 +85,11 @@ namespace Util
 		}
 
 		/// <summary>
-		/// Gets the dir path.
+		/// Gets the dir path without the '/' end
 		/// </summary>
 		/// <returns>The dir path.</returns>
 		/// <param name="path">Path.可能是一个文件路径，可能是一个目录路径</param>
-		public string GetDirPath (string path)
+		public static string GetDirPath (string path)
 		{
 			return System.IO.Path.GetDirectoryName (path);
 		}
@@ -99,9 +99,39 @@ namespace Util
 		/// </summary>
 		/// <returns>The file name.</returns>
 		/// <param name="filePath">File path.</param>
-		public string GetFileName (string filePath)
+		public static string GetFileName (string filePath)
 		{
 			return System.IO.Path.GetFileName (filePath);
 		}
+
+        /// <summary>
+        /// Get the name of the file without extension
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string GetFileNameWithoutExtension(string filePath)
+        {
+            return System.IO.Path.GetFileNameWithoutExtension(filePath);
+        }
+
+        /// <summary>
+        /// Get the name relative to resource without extension
+        /// </summary>
+        /// <param name="filePath"></param>
+        /// <returns></returns>
+        public static string GetFileNameRelativeToResources(string filePath)
+        {
+            string dir = GetDirPath(filePath) + "/";
+            string nameWithoutExtension = GetFileNameWithoutExtension(filePath);
+            if (!string.IsNullOrEmpty(dir))
+            {
+                string[] splits = dir.Split(new string[]{"Resources/"}, System.StringSplitOptions.None);
+                if (splits.Length > 1)
+                {
+                    dir = splits[splits.Length-1];
+                }
+            }
+            return dir + nameWithoutExtension;
+        }
 	}
 }
