@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Log;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -184,9 +185,7 @@ public class FileUtil
         }
         else
         {
-#if LOG_DETAIL
-            Debug.LogError(fileurl + "文件不存在");
-#endif
+            Logger.LogError(fileurl + "文件不存在");
         }
         return strmd5;
     }
@@ -255,9 +254,7 @@ public class FileUtil
         }
         catch
         {
-#if LOG_DETAIL
-            Debug.Log("拷贝文件" + source + "发生错误，请检查是否存在");
-#endif
+            Logger.Log("拷贝文件" + source + "发生错误，请检查是否存在");
         }
     }
 
@@ -316,9 +313,7 @@ public class FileUtil
         }
         catch
         {
-#if LOG_DETAIL
-            Debug.LogError("清空文件夹" + dir + "出错");
-#endif
+            Logger.LogError("清空文件夹" + dir + "出错");
         }
     }
 

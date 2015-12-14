@@ -6,4 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Tests/LightMap/lightmap-bak.unity
+    path: Assets/Tests/LoadScene/Scene1.unity
+  - enabled: 1
+    path: Assets/Tests/LoadScene/Scene2.unity
