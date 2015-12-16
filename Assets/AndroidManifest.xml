@@ -1,0 +1,139 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- Killer：installLocation="auto" -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.tencent.killerplus" android:installLocation="auto" android:theme="@android:style/Theme.NoTitleBar" android:versionCode="1" android:versionName="1.0">
+  <!-- Killer：自我更新的权限 -->
+  <uses-permission android:name="android.permission.INSTALL_PACKAGES" />
+  <!-- Killer：读取外部存储的权限 -->
+  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+  <!-- TODO SDK接入必须权限模块 START -->
+  <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+  <!-- ACCESS_FINE_LOCATION 手Q/微信获取附近的人 如不使用该功能可以去掉 -->
+  <uses-permission android:name="android.permission.INTERNET" />
+  <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+  <uses-permission android:name="android.permission.RESTART_PACKAGES" />
+  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+  <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+  <!-- TODO QMI接入权限模块 START -->
+  <uses-permission android:name="android.permission.CHANGE_CONFIGURATION" />
+  <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+  <uses-permission android:name="android.permission.RECORD_AUDIO" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+  <!-- qxiaomi permission end -->
+  <!-- 接入信鸽需要的其他权限 -->
+  <uses-permission android:name="android.permission.BROADCAST_STICKY" />
+  <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+  <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
+  <uses-permission android:name="android.permission.WAKE_LOCK" />
+  <uses-permission android:name="android.permission.VIBRATE" />
+  <!-- permission end -->
+  <!-- Google支付权限:start-->
+  <uses-permission android:name="com.android.vending.BILLING" />
+  <!-- Google OBB 下载权限 -->
+  <uses-permission android:name="com.android.vending.CHECK_LICENSE" />
+  <!-- Google支付权限:end-->
+  <!-- TODO SDK接入 接入支付需要设置屏幕兼容声明 START -->
+  <supports-screens android:anyDensity="true" android:largeScreens="true" android:normalScreens="true" />
+  <!-- TODO SDK接入 接入支付需要设置屏幕兼容声明 END -->
+  <uses-sdk android:minSdkVersion="9" android:targetSdkVersion="19" />
+  <application android:allowBackup="false" android:icon="@drawable/app_icon" android:label="@string/app_name" android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
+    <meta-data android:name="com.tencent.rdm.uuid" android:value="2096e2ac-b50e-4a8c-b01a-59c22386e5c1" />
+    <!-- Killer：android:screenOrientation="landscape"  -->
+    <!-- Killer：android:launchMode="singleTask" 防止有多个unity实例 -->
+    <activity android:name="com.tencent.killerplus.KillerPlusActivity" android:launchMode="singleTask" android:screenOrientation="landscape" android:label="@string/app_name" android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen">
+      <intent-filter>
+        <action android:name="android.intent.action.MAIN" />
+        <category android:name="android.intent.category.LAUNCHER" />
+      </intent-filter>
+      <!-- Killer：intent-filter block -->
+      <intent-filter>
+        <action android:name="android.intent.action.VIEW" />
+        <category android:name="android.intent.category.BROWSABLE" />
+        <category android:name="android.intent.category.DEFAULT" />
+        <data android:scheme="tencentmorefunklp" />
+      </intent-filter>
+      <meta-data android:name="unityplayer.ForwardNativeEventsToDalvik" android:value="false" />
+    </activity>
+    <!-- Google OBB 下载-->
+    <service android:name="com.tencent.imsdk.expansion.downloader.impl.DownloaderService" android:exported="false" />
+    <activity android:name="com.tencent.imsdk.IMProxyActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <meta-data android:name="com.tencent.imsdk.GameId" android:value="\ 1041" />
+    <meta-data android:name="com.tencent.imsdk.SdkServer" android:value="sdkapi-beta.itop.qq.com" />
+    <meta-data android:name="com.tencent.imsdk.debug.level" android:value="3" />
+    <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="\ 473451279499510" />
+    <activity android:name="com.facebook.FacebookActivity" android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:label="@string/app_name" />
+    <provider android:authorities="com.facebook.app.FacebookContentProvider473451279499510" android:name="com.facebook.FacebookContentProvider" android:exported="true" />
+    <meta-data android:name="com.google.android.gms.serverclientid" android:value="7516021564-0ojcne3mhc7qgd8kdig106v16lvt0n0b.apps.googleusercontent.com" />
+    <meta-data android:name="com.google.android.gms.games.APP_ID" android:value="\ 7516021564" />
+    <meta-data android:name="APPID_BUGLY" android:value="bugly900011438" />
+    <activity android:name="com.game37.sdk.ui.SDKLoginActivity" android:label="@string/app_name" android:screenOrientation="landscape" android:theme="@android:style/Theme.Translucent.NoTitleBar" android:windowSoftInputMode="stateAlwaysHidden" />
+    <activity android:name="com.ujoy.sdk.ui.AwardActivity" android:label="@string/app_name" android:configChanges="orientation" android:theme="@android:style/Theme.Light.NoTitleBar" android:windowSoftInputMode="stateAlwaysHidden" />
+    <receiver android:name="com.appsflyer.MultipleInstallBroadcastReceiver" android:exported="true">
+      <intent-filter>
+        <action android:name="com.android.vending.INSTALL_REFERRER" />
+      </intent-filter>
+    </receiver>
+    <receiver android:name="com.ujoy.sdk.utils.UjoyBroadcastReceiver" android:exported="true">
+      <intent-filter>
+        <action android:name="com.android.vending.INSTALL_REFERRER" />
+      </intent-filter>
+    </receiver>
+    <receiver android:name="com.appsflyer.AppsFlyerLib">
+      <intent-filter>
+        <action android:name="android.intent.action.PACKAGE_REMOVED" />
+        <data android:scheme="package" />
+      </intent-filter>
+    </receiver>
+    <meta-data android:name="com.tencent.imsdk.webviewTicketServer" android:value="/user" />
+    <activity android:name="com.tencent.msdk.webview.JumpShareActivity" android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+    <activity android:name="com.tencent.imsdk.webview.qq.WebViewWithFavActivity" android:configChanges="orientation|screenSize|keyboardHidden|navigation|fontScale|locale" android:process=":imsdk_inner_webview" android:screenOrientation="unspecified" android:theme="@android:style/Theme.Dialog" android:windowSoftInputMode="adjustPan" />
+    <receiver android:name="com.tencent.android.tpush.XGPushReceiver" android:process=":xg_service_v2">
+      <intent-filter android:priority="0x7fffffff">
+        <action android:name="com.tencent.android.tpush.action.SDK" />
+        <action android:name="com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE" />
+        <action android:name="android.intent.action.USER_PRESENT" />
+        <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+        <action android:name="android.bluetooth.adapter.action.STATE_CHANGED" />
+        <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+        <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+      </intent-filter>
+    </receiver>
+    <receiver android:name="com.tencent.imsdk.push.xg.IMXGPushReceiver">
+      <intent-filter>
+        <action android:name="com.tencent.android.tpush.action.PUSH_MESSAGE" />
+        <action android:name="com.tencent.android.tpush.action.FEEDBACK" />
+      </intent-filter>
+    </receiver>
+    <activity android:name="com.tencent.android.tpush.XGPushActivity" android:exported="true">
+      <intent-filter>
+        <action android:name="android.intent.action" />
+      </intent-filter>
+    </activity>
+    <service android:name="com.tencent.android.tpush.service.XGPushService" android:exported="true" android:persistent="true" android:process=":xg_service_v2" />
+    <meta-data android:name="XG_V2_ACCESS_ID" android:value="2100159269" />
+    <meta-data android:name="XG_V2_ACCESS_KEY" android:value="ARAV9S167V1B" />
+    <meta-data android:name="com.tencent.imsdk.needPush" android:value="pushOpen:true" />
+    <meta-data android:name="com.tencent.imsdk.pushServer" android:value="/push" />
+    <activity android:name="com.chartboost.sdk.CBImpressionActivity" android:excludeFromRecents="true" android:configChanges="keyboardHidden|orientation|screenSize" android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+    <service android:name="com.tencent.android.tpush.rpc.XGRemoteService" android:exported="true">
+      <intent-filter>
+        <action android:name="com.game37.kl.PUSH_ACTION" />
+      </intent-filter>
+    </service>
+    <!-- Killer:本地推送 -->
+    <receiver
+      android:name="com.tencent.killerplus.BootBroadcastReceiver"
+      android:process=":remote">
+      <intent-filter>
+        <action android:name="android.intent.action.BOOT_COMPLETED" />
+        <action android:name="com.tencent.killerplus.localnotification" />
+      </intent-filter>
+    </receiver>
+    <receiver   android:name="com.tencent.killerplus.AlarmBroadcastReceiver"
+    android:process=":remote">
+    </receiver>
+  </application>
+  <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+  <uses-permission android:name="android.permission.USE_CREDENTIALS" />
+</manifest>

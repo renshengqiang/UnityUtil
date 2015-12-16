@@ -4,7 +4,8 @@ using UnityEditor;
 using System.Collections.Generic;
 using Util;
 
-public class AssetBundleEditor : Editor {
+public class AssetBundleEditor
+{
 	/// <summary>
     /// 将所选择的的物体和物体有依赖关系的对象一起打包
     /// </summary>
